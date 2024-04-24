@@ -1,0 +1,452 @@
+{
+  "History": {
+    "easy": [
+      {
+        "question": "Who was the first President of the United States?",
+        "options": ["George Washington", "Abraham Lincoln", "Thomas Jefferson", "John Adams"],
+        "answer": "George Washington"
+      },
+      {
+        "question": "In which year did World War II end?",
+        "options": ["1945", "1939", "1941", "1950"],
+        "answer": "1945"
+      },
+      {
+        "question": "Which ancient civilization built the pyramids?",
+        "options": ["Egyptians", "Greeks", "Romans", "Persians"],
+        "answer": "Egyptians"
+      },
+      {
+        "question": "Who wrote the 'I Have a Dream' speech delivered during the March on Washington in 1963?",
+        "options": ["Martin Luther King Jr.", "Malcolm X", "Nelson Mandela", "Mahatma Gandhi"],
+        "answer": "Martin Luther King Jr."
+      }
+    ],
+    "medium": [
+      {
+        "question": "Which year marked the beginning of the French Revolution?",
+        "options": ["1789", "1799", "1801", "1776"],
+        "answer": "1789"
+      },
+      {
+        "question": "Who was the first woman to fly solo across the Atlantic Ocean?",
+        "options": ["Amelia Earhart", "Bessie Coleman", "Harriet Quimby", "Jacqueline Cochran"],
+        "answer": "Amelia Earhart"
+      },
+      {
+        "question": "Which ancient civilization is credited with the creation of democracy?",
+        "options": ["Greeks", "Romans", "Persians", "Babylonians"],
+        "answer": "Greeks"
+      },
+      {
+        "question": "Which famous explorer led the first expedition to circumnavigate the globe?",
+        "options": ["Ferdinand Magellan", "Christopher Columbus", "Vasco da Gama", "James Cook"],
+        "answer": "Ferdinand Magellan"
+      }
+    ],
+    "hard": [
+      {
+        "question": "What year did the Berlin Wall fall?",
+        "options": ["1989", "1991", "1985", "1990"],
+        "answer": "1989"
+      },
+      {
+        "question": "Who was the first emperor of Rome?",
+        "options": ["Augustus", "Julius Caesar", "Nero", "Constantine"],
+        "answer": "Augustus"
+      },
+      {
+        "question": "Which battle is considered the turning point of the American Civil War?",
+        "options": ["Gettysburg", "Antietam", "Vicksburg", "Appomattox Court House"],
+        "answer": "Gettysburg"
+      },
+      {
+        "question": "Who was the last pharaoh of ancient Egypt?",
+        "options": ["Cleopatra VII", "Ramses II", "Hatshepsut", "Akhenaten"],
+        "answer": "Cleopatra VII"
+      }
+    ],
+    "expert": [
+      {
+        "question": "What was the name of the treaty that ended World War I?",
+        "options": ["Treaty of Versailles", "Treaty of Paris", "Treaty of Trianon", "Treaty of Brest-Litovsk"],
+        "answer": "Treaty of Versailles"
+      },
+      {
+        "question": "Who was the first female Prime Minister of the United Kingdom?",
+        "options": ["Margaret Thatcher", "Theresa May", "Indira Gandhi", "Angela Merkel"],
+        "answer": "Margaret Thatcher"
+      },
+      {
+        "question": "What was the capital of the Byzantine Empire?",
+        "options": ["Constantinople", "Athens", "Rome", "Alexandria"],
+        "answer": "Constantinople"
+      },
+      {
+        "question": "Which American president issued the Emancipation Proclamation?",
+        "options": ["Abraham Lincoln", "Thomas Jefferson", "George Washington", "Andrew Jackson"],
+        "answer": "Abraham Lincoln"
+      }
+    ]
+  },
+  "FoodAndDrink": {
+    "easy": [
+      {
+        "question": "What is the primary ingredient in guacamole?",
+        "options": ["Avocado", "Tomato", "Onion", "Lemon"],
+        "answer": "Avocado"
+      },
+      {
+        "question": "Which fruit is commonly associated with the phrase 'An apple a day keeps the doctor away'?",
+        "options": ["Apple", "Orange", "Banana", "Grapes"],
+        "answer": "Apple"
+      },
+      {
+        "question": "What is the main ingredient in hummus?",
+        "options": ["Chickpeas", "Lentils", "Black beans", "Kidney beans"],
+        "answer": "Chickpeas"
+      },
+      {
+        "question": "What type of pasta is shaped like small rice grains?",
+        "options": ["Orzo", "Farfalle", "Penne", "Spaghetti"],
+        "answer": "Orzo"
+      }
+    ],
+    "medium": [
+      {
+        "question": "What is the primary ingredient in traditional Caesar salad dressing?",
+        "options": ["Anchovies", "Mayonnaise", "Olive oil", "Lemon juice"],
+        "answer": "Anchovies"
+      },
+      {
+        "question": "Which country is famous for its production of Parmesan cheese?",
+        "options": ["Italy", "France", "Switzerland", "Greece"],
+        "answer": "Italy"
+      },
+      {
+        "question": "What is the main ingredient in sushi?",
+        "options": ["Rice", "Seaweed", "Fish", "Soy sauce"],
+        "answer": "Rice"
+      },
+      {
+        "question": "What type of beverage is made from fermented grapes?",
+        "options": ["Wine", "Beer", "Vodka", "Tequila"],
+        "answer": "Wine"
+      }
+    ],
+    "hard": [
+      {
+        "question": "What is the traditional main ingredient in a Spanish paella?",
+        "options": ["Rice", "Noodles", "Quinoa", "Bulgur"],
+        "answer": "Rice"
+      },
+      {
+        "question": "What is the main ingredient in a traditional French cassoulet dish?",
+        "options": ["White beans", "Lamb", "Pork", "Beef"],
+        "answer": "White beans"
+      },
+      {
+        "question": "Which herb is a key ingredient in pesto sauce?",
+        "options": ["Basil", "Parsley", "Cilantro", "Rosemary"],
+        "answer": "Basil"
+      },
+      {
+        "question": "What is the main ingredient in the Mexican dish 'Mole'?",
+        "options": ["Chocolate", "Chili peppers", "Avocado", "Tomatoes"],
+        "answer": "Chocolate"
+      }
+    ],
+    "expert": [
+      {
+        "question": "What is the traditional base spirit in a classic Mojito cocktail?",
+        "options": ["Rum", "Vodka", "Tequila", "Gin"],
+        "answer": "Rum"
+      },
+      {
+        "question": "What is the primary ingredient in the Japanese dish 'Okonomiyaki'?",
+        "options": ["Cabbage", "Noodles", "Rice", "Fish"],
+        "answer": "Cabbage"
+      },
+      {
+        "question": "What type of cheese is used in the classic French dish 'Coq au Vin'?",
+        "options": ["Red wine", "Chicken", "Bacon", "Mushrooms"],
+        "answer": "Chicken"
+      },
+      {
+        "question": "What type of pastry is used to make a traditional Baklava dessert?",
+        "options": ["Phyllo", "Puff", "Shortcrust", "Choux"],
+        "answer": "Phyllo"
+      }
+    ]
+  },
+  "Nature": {
+    "easy": [
+      {
+        "question": "Which animal is known for its distinctive black and white stripes?",
+        "options": ["Zebra", "Giraffe", "Elephant", "Lion"],
+        "answer": "Zebra"
+      },
+      {
+        "question": "What is the tallest tree species in the world?",
+        "options": ["Redwood", "Oak", "Pine", "Maple"],
+        "answer": "Redwood"
+      },
+      {
+        "question": "What is the largest mammal in the world?",
+        "options": ["Blue whale", "African elephant", "Giraffe", "Hippopotamus"],
+        "answer": "Blue whale"
+      },
+      {
+        "question": "Which bird is known for its ability to mimic human speech?",
+        "options": ["Parrot", "Eagle", "Owl", "Penguin"],
+        "answer": "Parrot"
+      }
+    ],
+    "medium": [
+      {
+        "question": "What is the largest type of big cat in the world?",
+        "options": ["Tiger", "Lion", "Leopard", "Jaguar"],
+        "answer": "Tiger"
+      },
+      {
+        "question": "Which planet is known as the 'Red Planet'?",
+        "options": ["Mars", "Venus", "Jupiter", "Saturn"],
+        "answer": "Mars"
+      },
+      {
+        "question": "What is the process by which plants make their own food?",
+        "options": ["Photosynthesis", "Respiration", "Transpiration", "Germination"],
+        "answer": "Photosynthesis"
+      },
+      {
+        "question": "Which continent is home to the Amazon Rainforest?",
+        "options": ["South America", "Africa", "Asia", "Australia"],
+        "answer": "South America"
+      }
+    ],
+    "hard": [
+      {
+        "question": "What is the scientific term for the study of insects?",
+        "options": ["Entomology", "Ornithology", "Botany", "Herpetology"],
+        "answer": "Entomology"
+      },
+      {
+        "question": "Which natural phenomenon is caused by the refraction, reflection, and dispersion of light in water droplets resulting in a spectrum of light appearing in the sky?",
+        "options": ["Rainbow", "Aurora", "Tornado", "Eclipse"],
+        "answer": "Rainbow"
+      },
+      {
+        "question": "What is the name for the world's largest coral reef system located in Australia?",
+        "options": ["Great Barrier Reef", "Belize Barrier Reef", "Red Sea Coral Reef", "Andros Barrier Reef"],
+        "answer": "Great Barrier Reef"
+      },
+      {
+        "question": "Which gas is essential for all living organisms and makes up approximately 21% of Earth's atmosphere?",
+        "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Hydrogen"],
+        "answer": "Oxygen"
+      }
+    ],
+    "expert": [
+      {
+        "question": "What is the scientific name for the process of species disappearing from Earth?",
+        "options": ["Extinction", "Adaptation", "Evolution", "Mutation"],
+        "answer": "Extinction"
+      },
+      {
+        "question": "Which bird is known for its long-distance migratory flight, often spanning continents?",
+        "options": ["Arctic tern", "Peregrine falcon", "Albatross", "Swallow"],
+        "answer": "Arctic tern"
+      },
+      {
+        "question": "What is the term for the geographical region surrounding Earth where living organisms interact with each other and their environment?",
+        "options": ["Biosphere", "Geosphere", "Hydrosphere", "Atmosphere"],
+        "answer": "Biosphere"
+      },
+      {
+        "question": "What is the scientific term for the process of one species gradually evolving into a new species over time?",
+        "options": ["Speciation", "Mutation", "Adaptation", "Natural selection"],
+        "answer": "Speciation"
+      }
+    ]
+  },
+  "ComputerGames": {
+    "easy": [
+      {
+        "question": "Which popular game features a character named Mario?",
+        "options": ["Super Mario Bros.", "The Legend of Zelda", "Final Fantasy", "Minecraft"],
+        "answer": "Super Mario Bros."
+      },
+      {
+        "question": "What is the name of the block-building game where players can create and explore their own virtual worlds?",
+        "options": ["Minecraft", "Fortnite", "League of Legends", "Call of Duty"],
+        "answer": "Minecraft"
+      },
+      {
+        "question": "In which game do players control a virtual city and manage its development and resources?",
+        "options": ["SimCity", "World of Warcraft", "Overwatch", "Grand Theft Auto"],
+        "answer": "SimCity"
+      },
+      {
+        "question": "Which game involves matching colored candies to progress through levels?",
+        "options": ["Candy Crush Saga", "Angry Birds", "Clash of Clans", "Fruit Ninja"],
+        "answer": "Candy Crush Saga"
+      }
+    ],
+    "medium": [
+      {
+        "question": "What is the name of the game where players battle each other in a virtual arena using a variety of weapons and tactics?",
+        "options": ["Counter-Strike", "Dota 2", "Fortnite", "PlayerUnknown's Battlegrounds"],
+        "answer": "PlayerUnknown's Battlegrounds"
+      },
+      {
+        "question": "Which game franchise features a protagonist named Link and is known for its puzzles and adventure gameplay?",
+        "options": ["The Legend of Zelda", "Super Mario Bros.", "Final Fantasy", "Halo"],
+        "answer": "The Legend of Zelda"
+      },
+      {
+        "question": "In which game do players build and manage their own virtual amusement park?",
+        "options": ["RollerCoaster Tycoon", "Sims", "Cities: Skylines", "Age of Empires"],
+        "answer": "RollerCoaster Tycoon"
+      },
+      {
+        "question": "Which game is set in a post-apocalyptic world where players must survive against zombies and other threats?",
+        "options": ["Fallout", "The Last of Us", "Left 4 Dead", "DayZ"],
+        "answer": "DayZ"
+      }
+    ],
+    "hard": [
+      {
+        "question": "What is the name of the popular multiplayer online battle arena (MOBA) game developed by Riot Games?",
+        "options": ["League of Legends", "Dota 2", "Smite", "Heroes of the Storm"],
+        "answer": "League of Legends"
+      },
+      {
+        "question": "Which game features a fictional universe where players can explore planets, engage in space combat, and trade with other players?",
+        "options": ["Elite Dangerous", "No Man's Sky", "EVE Online", "Star Citizen"],
+        "answer": "No Man's Sky"
+      },
+      {
+        "question": "In which game do players control a character named Geralt of Rivia, a monster hunter for hire?",
+        "options": ["The Witcher 3: Wild Hunt", "Dark Souls", "Bloodborne", "Monster Hunter: World"],
+        "answer": "The Witcher 3: Wild Hunt"
+      },
+      {
+        "question": "What is the name of the game that simulates the experience of being a farmer, managing crops, livestock, and equipment?",
+        "options": ["Farming Simulator", "Stardew Valley", "Harvest Moon", "Story of Seasons"],
+        "answer": "Farming Simulator"
+      }
+    ],
+    "expert": [
+      {
+        "question": "Which game is considered the first-person shooter that popularized the genre and introduced many multiplayer mechanics?",
+        "options": ["Doom", "Quake", "Half-Life", "GoldenEye 007"],
+        "answer": "Doom"
+      },
+      {
+        "question": "What is the name of the game where players control a group of survivors in a zombie-infested world, managing resources and making tough decisions?",
+        "options": ["State of Decay", "Project Zomboid", "This War of Mine", "Dead State"],
+        "answer": "This War of Mine"
+      },
+      {
+        "question": "In which game do players take on the role of a leader of a nation and guide its development through history, politics, and war?",
+        "options": ["Civilization VI", "Europa Universalis IV", "Hearts of Iron IV", "Crusader Kings II"],
+        "answer": "Civilization VI"
+      },
+      {
+        "question": "What is the name of the game that simulates the experience of managing a professional football (soccer) team?",
+        "options": ["Football Manager", "FIFA Manager", "Pro Evolution Soccer Manager", "Championship Manager"],
+        "answer": "Football Manager"
+      }
+    ]
+  },
+  "Geography": {
+    "easy": [
+      {
+        "question": "What is the capital of France?",
+        "options": ["Paris", "Rome", "Berlin", "London"],
+        "answer": "Paris"
+      },
+      {
+        "question": "Which continent is known as the 'Land of the Rising Sun'?",
+        "options": ["Asia", "Europe", "North America", "Australia"],
+        "answer": "Asia"
+      },
+      {
+        "question": "What is the largest ocean on Earth?",
+        "options": ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean"],
+        "answer": "Pacific Ocean"
+      },
+      {
+        "question": "Which river is the longest in the world?",
+        "options": ["Nile River", "Amazon River", "Mississippi River", "Yangtze River"],
+        "answer": "Nile River"
+      }
+    ],
+    "medium": [
+      {
+        "question": "Which country is known as the 'Land of the Rising Sun'?",
+        "options": ["Japan", "China", "South Korea", "Vietnam"],
+        "answer": "Japan"
+      },
+      {
+        "question": "What is the tallest mountain in the world?",
+        "options": ["Mount Everest", "K2", "Kangchenjunga", "Lhotse"],
+        "answer": "Mount Everest"
+      },
+      {
+        "question": "Which desert is the largest in the world?",
+        "options": ["Sahara Desert", "Arabian Desert", "Gobi Desert", "Kalahari Desert"],
+        "answer": "Sahara Desert"
+      },
+      {
+        "question": "What is the capital of Australia?",
+        "options": ["Canberra", "Sydney", "Melbourne", "Perth"],
+        "answer": "Canberra"
+      }
+    ],
+    "hard": [
+      {
+        "question": "Which city is located at the highest altitude in the world?",
+        "options": ["La Paz", "Lhasa", "Kathmandu", "Quito"],
+        "answer": "La Paz"
+      },
+      {
+        "question": "Which strait separates Asia and North America?",
+        "options": ["Bering Strait", "Strait of Hormuz", "Strait of Gibraltar", "Strait of Malacca"],
+        "answer": "Bering Strait"
+      },
+      {
+        "question": "What is the largest island in the Mediterranean Sea?",
+        "options": ["Sicily", "Sardinia", "Cyprus", "Crete"],
+        "answer": "Sicily"
+      },
+      {
+        "question": "Which country has the longest coastline in the world?",
+        "options": ["Canada", "Norway", "Australia", "United States"],
+        "answer": "Canada"
+      }
+    ],
+    "expert": [
+      {
+        "question": "What is the southernmost point of Africa?",
+        "options": ["Cape Agulhas", "Cape of Good Hope", "Cape Horn", "Cape Verde"],
+        "answer": "Cape Agulhas"
+      },
+      {
+        "question": "Which river is the longest in South America?",
+        "options": ["Amazon River", "Paraná River", "Orinoco River", "Magdalena River"],
+        "answer": "Amazon River"
+      },
+      {
+        "question": "What is the largest archipelago in the world by land area?",
+        "options": ["Indonesia", "Philippines", "Japan", "Fiji"],
+        "answer": "Indonesia"
+      },
+      {
+        "question": "Which country is the largest by land area in Africa?",
+        "options": ["Algeria", "Democratic Republic of the Congo", "Sudan", "Libya"],
+        "answer": "Algeria"
+      }
+    ]
+  }
+}
