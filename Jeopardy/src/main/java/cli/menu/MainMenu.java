@@ -7,22 +7,13 @@ public class MainMenu {
 
     public static void run() {
         int playerInput;
-        boolean input = false;
+        boolean invalidInput = false;
 
         do {
-            printMainMenu();
-
-            if (input) {
-                System.out.print(ansi()
-                        .a("Invalid Option! Try Again:")
-                        .newline()
-                );
-            }
-
+            printMainMenu(invalidInput);
             playerInput = Menu.getUserInput();
-            input = !(playerInput >= 1 && playerInput <= 3);
-
-        } while (input);
+            invalidInput = !(playerInput >= 1 && playerInput <= 3);
+        } while (invalidInput);
 
         switch (playerInput) {
             case 1 -> GameMenu.run();
@@ -31,7 +22,7 @@ public class MainMenu {
         }
     }
 
-    private static void printMainMenu() {
+    private static void printMainMenu(boolean invalidInput) {
         AnsiConsole.systemInstall();
         System.out.print(ansi()
                 .cursor(0,0)
@@ -50,6 +41,13 @@ public class MainMenu {
                 .newline()
                 .newline()
         );
+
+        if (invalidInput) {
+            System.out.print(ansi()
+                    .a("Invalid Option! Try Again:")
+                    .newline()
+            );
+        }
     }
 
 }

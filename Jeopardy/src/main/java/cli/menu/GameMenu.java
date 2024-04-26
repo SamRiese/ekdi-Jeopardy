@@ -8,22 +8,13 @@ public class GameMenu {
 
     public static void run() {
         int playerInput;
-        boolean input = false;
+        boolean invalidInput = false;
 
         do {
-            printGameMenu();
-
-            if (input) {
-                System.out.print(ansi()
-                        .a("Invalid Option! Try Again:")
-                        .newline()
-                );
-            }
-
+            printGameMenu(invalidInput);
             playerInput = Menu.getUserInput();
-            input = !(playerInput >= 1 && playerInput <= 4);
-            
-        } while (input);
+            invalidInput = !(playerInput >= 1 && playerInput <= 4);
+        } while (invalidInput);
 
         switch (playerInput) {
             case 1 -> GameMenu.run();
@@ -33,7 +24,7 @@ public class GameMenu {
         }
     }
 
-    private static void printGameMenu() {
+    private static void printGameMenu(boolean invalidInput) {
         System.out.print(ansi()
                 .cursor(0, 0)
                 .eraseScreen()
@@ -50,5 +41,13 @@ public class GameMenu {
                 .newline()
                 .newline()
         );
+
+        if (invalidInput) {
+            System.out.print(ansi()
+                    .a("Invalid Option! Try Again:")
+                    .newline()
+            );
+        }
     }
+
 }
