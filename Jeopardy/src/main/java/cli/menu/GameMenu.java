@@ -1,16 +1,17 @@
 package cli.menu;
 
-import org.fusesource.jansi.AnsiConsole;
-import static org.fusesource.jansi.Ansi.*;
+import cli.Main;
 
-public class MainMenu {
+import static org.fusesource.jansi.Ansi.ansi;
+
+public class GameMenu {
 
     public static void run() {
         int playerInput;
         boolean input = false;
 
         do {
-            printMainMenu();
+            printGameMenu();
 
             if (input) {
                 System.out.print(ansi()
@@ -20,36 +21,34 @@ public class MainMenu {
             }
 
             playerInput = Menu.getUserInput();
-            input = !(playerInput >= 1 && playerInput <= 3);
-
+            input = !(playerInput >= 1 && playerInput <= 4);
+            
         } while (input);
 
         switch (playerInput) {
             case 1 -> GameMenu.run();
-            case 2 -> OptionMenu.run();
-            case 3 -> System.exit(0);
+            case 2 -> GameMenu.run();
+            case 3 -> GameMenu.run();
+            case 4 -> MainMenu.run();
         }
     }
 
-    private static void printMainMenu() {
-        AnsiConsole.systemInstall();
+    private static void printGameMenu() {
         System.out.print(ansi()
-                .cursor(0,0)
+                .cursor(0, 0)
                 .eraseScreen()
-                .a("Welcome to Jeopardy!")
+                .a("Choose Game Mode:")
                 .newline()
                 .newline()
-                .a("Main Menu:")
+                .a("[1] Start New Game")
                 .newline()
+                .a("[2] Start Singleplayer")
                 .newline()
-                .a("[1] Game Menu")
+                .a("[3] Return to Saved Game")
                 .newline()
-                .a("[2] Option Menu")
-                .newline()
-                .a("[3] Exit")
+                .a("[4] Exit")
                 .newline()
                 .newline()
         );
     }
-
 }
