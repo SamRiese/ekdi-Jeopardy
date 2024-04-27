@@ -1,5 +1,6 @@
 package cli.menu;
 
+import cli.CLI;
 import org.fusesource.jansi.AnsiConsole;
 
 import static org.fusesource.jansi.Ansi.*;
@@ -11,7 +12,7 @@ public class OptionMenu {
 
         do {
             printOptionMenu();
-            playerInput = Menu.getUserInput();
+            playerInput = CLI.getUserInput();
         } while (!(playerInput >= 1 && playerInput <= 3));
 
         switch (playerInput) {
@@ -24,10 +25,10 @@ public class OptionMenu {
         AnsiConsole.systemInstall();
         for (int i = 0; i < 5; i++) {
             System.out.print(ansi()
-                    .cursor(0,0)
-                    .eraseScreen()
-                    .render(String.valueOf(i))
-                    .cursorLeft(String.valueOf(i).length())
+                            .cursor(0,0)
+                            .eraseScreen()
+                            .render(String.valueOf(i))
+                            .cursorLeft(String.valueOf(i).length())
             );
             try {
                 Thread.sleep(1000);
