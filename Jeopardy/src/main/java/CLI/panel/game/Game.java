@@ -4,11 +4,14 @@ import CLI.Theme;
 import CLI.Window;
 import backend.GameBoard;
 import backend.GameCategory;
+import backend.Player;
 import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
+import java.util.List;
+
 public class Game extends Panel {
-    protected static final String JEOPARDY =
+    private static final String JEOPARDY =
             "       _                                _       \n" +
                     "      | |                              | |      \n" +
                     "      | | ___  ___  _ __   __ _ _ __ __| |_   _ \n" +
@@ -17,24 +20,28 @@ public class Game extends Panel {
                     "  \\____/ \\___|\\___/| .__/ \\__,_|_|  \\__,_|\\__, |\n" +
                     "                   | |                     __/ |\n" +
                     "                   |_|                    |___/";
-    protected static final int gameBoardHeight = 4;
-    protected static final int gameBoardWidth = 5;
-    protected static final int gameBoardSize = gameBoardHeight * gameBoardWidth;
+    private static final int gameBoardHeight = 4;
+    private static final int gameBoardWidth = 5;
+    private static final int gameBoardSize = gameBoardHeight * gameBoardWidth;
 
-    final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
-    final GameBoard gameBoardQuestions;
-    Panel gameBoard;
-    CLI.Window window;
-    Scoreboard scoreboard;
+    private final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
+    private final GameBoard gameBoardQuestions;
+    private final Panel gameBoard;
+    private final Window window;
+    private final Scoreboard scoreboard;
     int availableQuestions = gameBoardSize;
-    final int numberOfPlayers;
-    int currentPlayer;
+    private final int numberOfPlayers;
+    private final List<Player> playerList;
+    private Player currentPlayer;
+    private Question currentQuestion;
 
 
-    public Game(Window window, int numberOfPlayers) {
+    public Game(Window window, List<Player> players) {
         super(new LinearLayout(Direction.VERTICAL));
         this.window = window;
-        this.numberOfPlayers = numberOfPlayers;
+        this.numberOfPlayers = players.size();
+        this.playerList = players;
+        this.currentPlayer = playerList.getFirst();
         this.scoreboard = new Scoreboard(this);
         this.gameBoardQuestions = new GameBoard();
         this.gameBoard = createGameBoard();
@@ -86,7 +93,9 @@ public class Game extends Panel {
     }
 
     protected void validatePlayerAnswer(boolean isAnswerCorrect) {
-    //        System.out.println("validatePlayerAnswer");
+        if (isAnswerCorrect) {
+            
+        }
     }
 
     protected Panel getScoreboard() {
@@ -99,7 +108,34 @@ public class Game extends Panel {
         for (int i = 0; i < numberOfPlayers; i++) {
             scoreboard.addComponent(new Label(String.valueOf(i)));
         }
-
         return scoreboard;
+    }
+
+    protected List<Player> getPlayerList() {
+        return playerList;
+    }
+
+    protected int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    protected void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    protected Player getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
+    protected void setCurrentQuestion(Question currentQuestion) {
+        this.currentQuestion = currentQuestion;
+    }
+
+    protected Question getCurrentQuestion() {
+        return this.currentQuestion;
+    }
+
+    protected Window getWindow() {
+        return window;
     }
 }

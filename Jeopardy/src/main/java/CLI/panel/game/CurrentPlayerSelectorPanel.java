@@ -12,7 +12,7 @@ public class CurrentPlayerSelectorPanel extends Panel {
         this.game = game;
         game.enableButtons(false);
 
-        if (game.numberOfPlayers == 1) {
+        if (game.getNumberOfPlayers() == 1) {
             game.removeComponent(this);
 //            game.addComponent(new AnswerDialogPanel());
         } else {
@@ -30,7 +30,7 @@ public class CurrentPlayerSelectorPanel extends Panel {
     private Panel playerSelectorPanel() {
         Panel playerSelectorPanel = new Panel(new GridLayout(2)).setLayoutData(layoutData);
 
-        for (int i = 0; i < game.numberOfPlayers; i++) {
+        for (int i = 0; i < game.getNumberOfPlayers(); i++) {
             Button button = new Button("Player");
 
             button.addListener(button1 -> {

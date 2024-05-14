@@ -1,6 +1,7 @@
 package CLI.panel.game;
 
 import CLI.Theme;
+import backend.Player;
 import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
@@ -45,12 +46,13 @@ public class ShowQuestionDialogPanel extends Panel {
     private Panel choosePlayer() {
         Panel choosePlayerPanel = new Panel(new LinearLayout(Direction.HORIZONTAL)).setLayoutData(layoutData);
 
-        for (int i = 0; i < game.numberOfPlayers; i++) {
-            Button button = new Button("Player");
+        for (Player player : game.getPlayerList()) {
+            Button button = new Button(player.getName());
 
             button.addListener(button1 -> {
                 button.setEnabled(false);
                 game.removeComponent(this);
+                game.setCurrentPlayer(player);
                 game.addComponent(new AnswerDialogPanel(game, question));
             });
 
