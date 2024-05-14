@@ -2,7 +2,15 @@ package CLI.panel.game;
 
 import CLI.Theme;
 import CLI.Window;
+import backend.GameBoard;
+import backend.GameCategory;
+import backend.Question;
 import com.googlecode.lanterna.gui2.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class Game extends Panel {
     protected static final String JEOPARDY =
@@ -19,18 +27,22 @@ public class Game extends Panel {
     protected static final int gameBoardSize = gameBoardHeight * gameBoardWidth;
 
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
+    final GameBoard gameBoardQuestions;
+    Panel gameBoard;
     CLI.Window window;
     Scoreboard scoreboard;
     int availableQuestions = gameBoardSize;
     final int numberOfPlayers;
-    int currentPlayer = 0;
-    Button currentGameButton;
+    int currentPlayer;
+
 
     public Game(Window window, int numberOfPlayers) {
         super(new LinearLayout(Direction.VERTICAL));
         this.window = window;
         this.numberOfPlayers = numberOfPlayers;
         this.scoreboard = new Scoreboard(this);
+        this.gameBoardQuestions = new GameBoard();
+        this.gameBoard = createGameBoard();
 
         setTheme(Theme.getTheme());
 
@@ -40,7 +52,7 @@ public class Game extends Panel {
         addComponent(new EmptySpace());
         addComponent(scoreboard);
         addComponent(new EmptySpace());
-        addComponent(getGameBoard());
+        addComponent(gameBoard);
     }
 
     protected Label getTitleAsLabel() {
@@ -48,47 +60,26 @@ public class Game extends Panel {
         return new Label("JEOPARDY").setLayoutData(layoutData);
     }
 
-    protected Panel getGameBoard() {
-        Panel gameboard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
+    protected Panel createGameBoard() {
+        Panel gameBoard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
 
-        //category name
-        for (int i = 0; i < gameBoardWidth; i++) {
-            gameboard.addComponent(new Label("Placeholder").setLayoutData(layoutData));
-        }
-
-        //questions
-        for (int i = 1; i <= gameBoardHeight; i++) {
-            int currentLabel = i * 100;
-            for (int j = 0; j < gameBoardWidth; j++) {
-                gameboard.addComponent(createButton(String.valueOf(currentLabel)));
+        for (Question.Difficulty difficulty : Question.Difficulty.values()) {
+            int label = 100;
+            for (GameCategory gc : this.gameBoardQuestions.getGameCategories()) {
+                gameBoard.addComponent(new GameBoardButton(String.valueOf(label), this, gc.getQuestionbyDiffculty(difficulty)));
             }
-
+            label += 100;
         }
 
-        return gameboard;
-    }
-
-    protected Button createButton(String label) {
-        Button button = new Button(label);
-
-        button.addListener(button1 -> {
-            button.setVisible(false);
-            button.setEnabled(false);
-            currentGameButton = button;
-            this.addComponent(new CurrentPlayerSelectorPanel(this));
-        });
-
-        return button;
+        return gameBoard;
     }
 
     protected void enableButtons(boolean enable) {
-        for (Component component : getChildrenList()) {
-            if (component instanceof Panel) {
-                for (Component child : ((Panel) component).getChildrenList()) {
-                    if (child instanceof Button) {
-                        if (child.isVisible()) {
-                            ((Button) child).setEnabled(enable);
-                        }
+        for (Component panel : gameBoard.getChildrenList()) {
+            if (panel instanceof Panel) {
+                for (Component button : ((Panel) panel).getChildrenList()) {
+                    if (button instanceof Button) {
+                        ((Button) button).setEnabled(enable);
                     }
                 }
             }
@@ -99,8 +90,7 @@ public class Game extends Panel {
 //        System.out.println("Select current player");
     }
 
-    protected void validatePlayerAnswer() {
-        scoreboard.updatePlayerScore(Integer.parseInt(currentGameButton.getLabel()));
+    protected void validatePlayerAnswer(boolean isAnswerCorrect) {
     //        System.out.println("validatePlayerAnswer");
     }
 

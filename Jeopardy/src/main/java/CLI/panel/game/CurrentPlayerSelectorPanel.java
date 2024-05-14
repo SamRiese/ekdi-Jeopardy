@@ -14,7 +14,7 @@ public class CurrentPlayerSelectorPanel extends Panel {
 
         if (game.numberOfPlayers == 1) {
             game.removeComponent(this);
-            game.addComponent(new AnswerDialogPanel(game));
+//            game.addComponent(new AnswerDialogPanel());
         } else {
             setLayoutData(layoutData);
             setTheme(Theme.getTheme());
@@ -37,7 +37,7 @@ public class CurrentPlayerSelectorPanel extends Panel {
                 button.setEnabled(false);
                 game.removeComponent(this);
                 game.selectCurrentPlayer();
-                game.addComponent(new AnswerDialogPanel(game));
+//                game.addComponent(new AnswerDialogPanel(game));
             });
 
             playerSelectorPanel.addComponent(button);

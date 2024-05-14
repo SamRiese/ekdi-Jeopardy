@@ -3,12 +3,14 @@
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/backend/GameBoard.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/game/Scoreboard.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/Theme.java
+/home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/game/ShowQuestionDialogPanel.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/backend/GameCategory.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/menu/MainMenuPanel.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/menu/GameMenuPanel.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/game/CurrentPlayerSelectorPanel.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/Window.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/game/Game.java
+/home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/game/GameBoardButton.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/backend/DataHandler.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/backend/Category.java
 /home/sam/Projects/java_workspace/ekdi-Jeopardy/Jeopardy/src/main/java/CLI/panel/menu/OptionMenuPanel.java

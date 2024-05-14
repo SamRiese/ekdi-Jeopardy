@@ -1,47 +1,43 @@
 package CLI.panel.game;
 
 import CLI.Theme;
+import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
 public class AnswerDialogPanel extends Panel {
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     final Game game;
+    final Question question;
 
-    protected AnswerDialogPanel(Game game) {
-        super();
+    protected AnswerDialogPanel(Game game, Question question) {
+        super(new LinearLayout(Direction.VERTICAL));
         this.game = game;
+        this.question = question;
 
         setLayoutData(layoutData);
         setTheme(Theme.getTheme());
 
         addComponent(new EmptySpace());
         addComponent(new EmptySpace());
-        addComponent(getQuestionAsLabel());
+        addComponent(new Label(question.question).setLayoutData(layoutData));
         addComponent(new EmptySpace());
         addComponent(answerDialogPanel());
     }
 
-    protected Label getQuestionAsLabel() {
-        String question = "Das hier ist eine lange Frage";
-        return new Label(question).setLayoutData(layoutData);
-    }
+    protected ActionListBox answerDialogPanel() {
+        String[] abcd = {"A) ", "B) ", "C) ", "D) "};
+        ActionListBox answerActionListBox = new ActionListBox();
+        answerActionListBox.setLayoutData(layoutData);
 
-    protected Panel answerDialogPanel() {
-        Panel answerDialogPanel = new Panel(new GridLayout(2)).setLayoutData(layoutData);
-
-        for (int i = 0; i < 4; i++) {
-            Button button = new Button("Answer");
-
-            button.addListener(button1 -> {
-                button.setEnabled(false);
+        int index = 0;
+        for (String answerOption : question.options) {
+            answerActionListBox.addItem(abcd[index] + answerOption, () -> {
                 game.removeComponent(this);
-                game.validatePlayerAnswer();
                 game.enableButtons(true);
+                game.validatePlayerAnswer(answerOption.equals(question.answer));
             });
-
-            answerDialogPanel.addComponent(button);
+            index++;
         }
-
-        return answerDialogPanel;
+        return answerActionListBox;
     }
 }

@@ -11,9 +11,11 @@ CLI/panel/menu/OptionMenuPanel.class
 CLI/panel/game/Game.class
 CLI/panel/menu/GameMenuPanel.class
 CLI/panel/game/Scoreboard.class
+CLI/panel/game/ShowQuestionDialogPanel.class
 Main.class
 backend/GameBoard.class
 backend/DataHandler.class
+CLI/panel/game/GameBoardButton.class
 CLI/panel/game/AnswerDialogPanel.class
 backend/GameCategory$1.class
 backend/GameCategory.class

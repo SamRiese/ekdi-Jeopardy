@@ -20,7 +20,7 @@ public class DataHandler {
     }
 
     public List<Category> loadQuestions() {
-        System.out.println("Loading questions...");
+//        System.out.println("Loading questions...");
         path = System.getProperty("user.dir") + path;
 
         final Type QUESTION_TYPE = new TypeToken<List<Category>>() {
@@ -32,11 +32,11 @@ public class DataHandler {
             JsonReader reader = new JsonReader(new FileReader(path));
             List<Category> data = gson.fromJson(reader, QUESTION_TYPE);
 
-            for (Category c : data) {
-                for (int i = 0; i < c.easy.size(); i++) {
-                    System.out.println(c.easy.get(i).question);
-                }
-            }
+//            for (Category c : data) {
+//                for (int i = 0; i < c.easy.size(); i++) {
+//                    System.out.println(c.easy.get(i).question);
+//                }
+//            }
             Categories.addAll(data);
             return data;
         } catch (FileNotFoundException e) {
