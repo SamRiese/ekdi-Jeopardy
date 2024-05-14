@@ -7,11 +7,6 @@ import backend.GameCategory;
 import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Stream;
-
 public class Game extends Panel {
     protected static final String JEOPARDY =
             "       _                                _       \n" +
@@ -63,10 +58,10 @@ public class Game extends Panel {
     protected Panel createGameBoard() {
         Panel gameBoard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
 
+        int label = 100;
         for (Question.Difficulty difficulty : Question.Difficulty.values()) {
-            int label = 100;
             for (GameCategory gc : this.gameBoardQuestions.getGameCategories()) {
-                gameBoard.addComponent(new GameBoardButton(String.valueOf(label), this, gc.getQuestionbyDiffculty(difficulty)));
+                gameBoard.addComponent(new GameBoardButton(String.valueOf(label), this, gc.getQuestionByDifficulty(difficulty)));
             }
             label += 100;
         }
