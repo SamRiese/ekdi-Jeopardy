@@ -17,9 +17,7 @@ public class DataHandler {
 
     }
 
-    public List<Category> loadQuestions() {
-        System.out.println("Loading questions...");
-        
+    public List<Category> loadQuestions() {      
         String path = "/data/questions.json"; 
         
         InputStream inputStream = DataHandler.class.getResourceAsStream(path); 
