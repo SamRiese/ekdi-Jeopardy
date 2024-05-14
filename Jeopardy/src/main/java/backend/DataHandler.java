@@ -42,11 +42,6 @@ public class DataHandler {
 
         List<Category> data = gson.fromJson(jsonString, QUESTION_TYPE);
 
-        for (Category c : data) {
-            for (int i = 0; i < c.easy.size(); i++) {
-                System.out.println(c.easy.get(i).question);
-            }
-        }
         Categories.addAll(data);
         return data;
     }
