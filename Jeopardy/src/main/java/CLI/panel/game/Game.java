@@ -33,7 +33,8 @@ public class Game extends Panel {
     private final int numberOfPlayers;
     private final List<Player> playerList;
     private Player currentPlayer;
-    private Question currentQuestion;
+    private Label currentPlayerLabel;
+    private int currentQuestionScore;
 
 
     public Game(Window window, List<Player> players) {
@@ -62,6 +63,10 @@ public class Game extends Panel {
         return new Label("JEOPARDY").setLayoutData(layoutData);
     }
 
+    protected Label setCurrentPlayerLabel() {
+        return
+    }
+
     protected Panel createGameBoard() {
         Panel gameBoard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
 
@@ -77,24 +82,20 @@ public class Game extends Panel {
     }
 
     protected void enableButtons(boolean enable) {
-        for (Component panel : gameBoard.getChildrenList()) {
-            if (panel instanceof Panel) {
-                for (Component button : ((Panel) panel).getChildrenList()) {
-                    if (button instanceof Button) {
-                        ((Button) button).setEnabled(enable);
-                    }
-                }
+        for (Component component : gameBoard.getChildrenList()) {
+            if (component instanceof Button) {
+                ((Button) component).setEnabled(enable);
             }
         }
     }
 
-    protected void selectCurrentPlayer() {
-//        System.out.println("Select current player");
-    }
-
     protected void validatePlayerAnswer(boolean isAnswerCorrect) {
         if (isAnswerCorrect) {
-            
+            currentPlayer.increaseScore(currentQuestionScore);
+            scoreboard.updatePlayerScore(currentPlayer);
+        } else {
+            currentPlayer.increaseScore(-currentQuestionScore);
+            scoreboard.updatePlayerScore(currentPlayer);
         }
     }
 
@@ -127,12 +128,8 @@ public class Game extends Panel {
         return this.currentPlayer;
     }
 
-    protected void setCurrentQuestion(Question currentQuestion) {
-        this.currentQuestion = currentQuestion;
-    }
-
-    protected Question getCurrentQuestion() {
-        return this.currentQuestion;
+    protected void setCurrentQuestionScore(int score) {
+        this.currentQuestionScore = score;
     }
 
     protected Window getWindow() {

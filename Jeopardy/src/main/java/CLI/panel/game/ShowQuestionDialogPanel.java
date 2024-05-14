@@ -18,14 +18,19 @@ public class ShowQuestionDialogPanel extends Panel {
         setLayoutData(layoutData);
         setTheme(Theme.getTheme());
 
-        addComponent(new EmptySpace());
-        addComponent(new EmptySpace());
-        addComponent(new Label(question.question).setLayoutData(layoutData));
-        addComponent(new EmptySpace());
-        addComponent(answerActionListBox());
-        addComponent(new EmptySpace());
-        addComponent(choosePlayer());
-
+        if (game.getPlayerList().size() == 1) {
+            game.setCurrentPlayer(game.getPlayerList().getFirst());
+            game.removeComponent(this);
+            game.addComponent(new AnswerDialogPanel(game, question));
+        } else {
+            addComponent(new EmptySpace());
+            addComponent(new EmptySpace());
+            addComponent(new Label(question.question).setLayoutData(layoutData));
+            addComponent(new EmptySpace());
+            addComponent(answerActionListBox());
+            addComponent(new EmptySpace());
+            addComponent(choosePlayer());
+        }
     }
 
     private ActionListBox answerActionListBox() {

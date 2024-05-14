@@ -19,6 +19,7 @@ public class GameBoardButton extends Button {
             button.setVisible(false);
             button.setEnabled(false);
             game.enableButtons(false);
+            game.setCurrentQuestionScore(Integer.parseInt(label));
             game.addComponent(new ShowQuestionDialogPanel(game, question));
         });
     }

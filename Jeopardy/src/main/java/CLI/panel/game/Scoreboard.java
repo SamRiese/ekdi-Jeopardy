@@ -6,11 +6,11 @@ import com.googlecode.lanterna.gui2.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Scoreboard extends Panel {
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     Game game;
-    List<Label> playerNameLabelList = new ArrayList<>();
     List<Label> playerScoreLabelList = new ArrayList<>();
 
     protected Scoreboard(Game game) {
@@ -25,9 +25,7 @@ public class Scoreboard extends Panel {
 
     private void createScoreboardComponents() {
         for (Player player : game.getPlayerList()) {
-            Label label = new Label(player.getName());
-            playerNameLabelList.add(label);
-            addComponent(label);
+            addComponent(new Label(player.getName()));
         }
 
         for (Player player : game.getPlayerList()) {
@@ -38,8 +36,11 @@ public class Scoreboard extends Panel {
     }
 
     protected void updatePlayerScore(Player player) {
-        for (Label label : playerNameLabelList) {
-            label.setText(String.valueOf(player.getScore()));
+        for (int i = 0; i < game.getPlayerList().size(); i++) {
+            if (game.getPlayerList().get(i) == player) {
+                System.out.println(player.getScore());
+                playerScoreLabelList.get(i).setText(String.valueOf(player.getScore()));
+            }
         }
     }
 }
