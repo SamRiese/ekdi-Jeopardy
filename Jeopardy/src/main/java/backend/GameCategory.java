@@ -57,4 +57,22 @@ public class GameCategory {
         }
         return left;
     }
+
+    public Question getQuestionByDifficulty(Difficulty difficulty){
+        if (difficulty == Difficulty.EASY){
+            return easy;
+        }
+        else if (difficulty == Difficulty.MEDIUM){
+            return medium;
+        }
+        else if (difficulty == Difficulty.HARD){
+            return hard;
+        }
+        else if (difficulty == Difficulty.EXPERT){
+            return expert;
+        }
+        else {
+            return null;
+        }
+    }
 }
