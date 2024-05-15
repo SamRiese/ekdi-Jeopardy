@@ -5,7 +5,7 @@ public class Score {
     public int score; 
     public Score(String name, String score) { 
         this.name = name;
-        this.score = Integer.valueOf(score);
+        this.score = Integer.valueOf(score.strip());
     } 
     public Score(String name, int score) { 
         this.name = name;
