@@ -41,17 +41,20 @@ public class ScoreHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            sortScores();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
     }
     public void addScore(String name, int score) {
         scores.add(new Score(name, score));
+        sortScores();
     }
     public void addScore(Score newScore) {
         scores.add(newScore);
+        sortScores();
     }
-    public void sortScores() {
+    private void sortScores() {
         Collections.sort(scores, Collections.reverseOrder(Comparator.comparing(score -> score.score)));
     }
     private String getScoresAsCSVString() {
@@ -61,6 +64,4 @@ public class ScoreHandler {
         }
         return csvString;
     }
-
-
 }
