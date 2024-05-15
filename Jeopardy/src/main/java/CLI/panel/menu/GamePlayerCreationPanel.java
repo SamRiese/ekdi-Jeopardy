@@ -3,21 +3,25 @@ package CLI.panel.menu;
 import CLI.Theme;
 import CLI.Window;
 import CLI.panel.game.Game;
+import backend.Player;
 import com.googlecode.lanterna.gui2.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class GamePlayerCreationPanel extends Panel {
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     final Window window;
     final int numberOfPlayers;
-
+    List<Player> players;
     protected GamePlayerCreationPanel(Window window, int numberOfPlayers) {
         super(new LinearLayout(Direction.VERTICAL));
         this.window = window;
         this.numberOfPlayers = numberOfPlayers;
 
+        this.players = new ArrayList<>(numberOfPlayers);
         setTheme(Theme.getTheme());
         getPlayerCreationInterface(numberOfPlayers);
     }
@@ -44,6 +48,7 @@ public class GamePlayerCreationPanel extends Panel {
                     removeComponent(textBox);
                     removeComponent(saveButton);
                     removeComponent(exitButton);
+                    this.players.add(new Player(textBox.getText()));
                     getPlayerCreationInterface(numberOfPlayers - 1, player + 1);
                 }
             });
@@ -56,7 +61,7 @@ public class GamePlayerCreationPanel extends Panel {
             addComponent(emptySpaces[2]);
             addComponent(exitButton);
         } else {
-            window.setComponent(new Game(window, this.numberOfPlayers));
+            window.setComponent(new Game(window, players));
         }
     }
 

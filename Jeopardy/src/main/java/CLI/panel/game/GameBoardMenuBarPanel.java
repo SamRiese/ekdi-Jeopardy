@@ -15,8 +15,8 @@ public class GameBoardMenuBarPanel extends Panel {
         setLayoutData(layoutData);
         setTheme(Theme.getTheme());
 
-        addComponent(new Button("Exit", () -> game.window.setComponent(new MainMenuPanel(game.window))));
+        addComponent(new Button("Exit", () -> game.getWindow().setComponent(new MainMenuPanel(game.getWindow()))));
         addComponent(new EmptySpace());
-        addComponent(new Button("Safe", () -> game.window.setComponent(new MainMenuPanel(game.window))));
+        addComponent(new Button("Safe", () -> game.getWindow().setComponent(new MainMenuPanel(game.getWindow()))));
     }
 }

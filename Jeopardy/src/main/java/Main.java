@@ -9,7 +9,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 
 public class Main {
-    public static MultiWindowTextGUI multiWindowTextGUI;
 
     public static void main(String[] args) throws IOException {
         Terminal terminal = new DefaultTerminalFactory().createTerminal();
@@ -19,7 +18,6 @@ public class Main {
         Window window = new Window();
 
         MultiWindowTextGUI textGUI = new MultiWindowTextGUI(screen);
-        multiWindowTextGUI = textGUI;
         textGUI.setTheme(Theme.getTheme());
         textGUI.addWindowAndWait(window);
 

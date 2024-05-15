@@ -25,5 +25,8 @@ public class GameBoard {
     public List<Difficulty> getDifficultiesLeftInGameCategory(int indexCategory) {
         return gameCategories.get(indexCategory).getDifficultiesLeft();
     }
+    public List<GameCategory> getGameCategories() {
+        return gameCategories;
+    }
 }
 

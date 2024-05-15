@@ -17,10 +17,10 @@ public class DataHandler {
 
     }
 
-    public List<Category> loadQuestions() {      
-        String path = "/data/questions.json"; 
-        
-        InputStream inputStream = DataHandler.class.getResourceAsStream(path); 
+    public List<Category> loadQuestions() {
+        String path = "/data/questions.json";
+
+        InputStream inputStream = DataHandler.class.getResourceAsStream(path);
 
         StringBuilder content = new StringBuilder();
 

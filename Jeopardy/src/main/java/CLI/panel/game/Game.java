@@ -2,10 +2,16 @@ package CLI.panel.game;
 
 import CLI.Theme;
 import CLI.Window;
+import backend.GameBoard;
+import backend.GameCategory;
+import backend.Player;
+import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
+import java.util.List;
+
 public class Game extends Panel {
-    protected static final String JEOPARDY =
+    private static final String JEOPARDY =
             "       _                                _       \n" +
                     "      | |                              | |      \n" +
                     "      | | ___  ___  _ __   __ _ _ __ __| |_   _ \n" +
@@ -14,107 +20,140 @@ public class Game extends Panel {
                     "  \\____/ \\___|\\___/| .__/ \\__,_|_|  \\__,_|\\__, |\n" +
                     "                   | |                     __/ |\n" +
                     "                   |_|                    |___/";
-    protected static final int gameBoardHeight = 4;
-    protected static final int gameBoardWidth = 5;
-    protected static final int gameBoardSize = gameBoardHeight * gameBoardWidth;
+    private static final int numberOfCategories = 5;
+    private static final int gameBoardWidth = (numberOfCategories + (numberOfCategories - 1));
 
-    final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
-    CLI.Window window;
-    Scoreboard scoreboard;
-    int availableQuestions = gameBoardSize;
-    final int numberOfPlayers;
-    int currentPlayer = 0;
-    Button currentGameButton;
+    private final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
+    private final GameBoard gameBoardQuestions;
+    private final Panel gameBoard;
+    private final Window window;
+    private final Scoreboard scoreboard;
+    private final int numberOfPlayers;
+    private final List<Player> playerList;
+    private Player currentPlayer;
+    private Player questionChooserPlayer;
+    private final Label currentTitleLabel;
+    private int currentQuestionScore;
 
-    public Game(Window window, int numberOfPlayers) {
+
+    public Game(Window window, List<Player> players) {
         super(new LinearLayout(Direction.VERTICAL));
         this.window = window;
-        this.numberOfPlayers = numberOfPlayers;
+        this.numberOfPlayers = players.size();
+        this.playerList = players;
+        this.currentPlayer = playerList.getFirst();
         this.scoreboard = new Scoreboard(this);
+        this.gameBoardQuestions = new GameBoard();
+        this.gameBoard = createGameBoard();
+        this.currentTitleLabel = new Label(currentPlayer.getName() + " choose a question:").setLayoutData(layoutData);
+        this.questionChooserPlayer = playerList.getFirst();
 
         setTheme(Theme.getTheme());
 
         addComponent(new GameBoardMenuBarPanel(this));
         addComponent(new EmptySpace());
-        addComponent(getTitleAsLabel());
+        addComponent(getCurrentTitleLabel());
         addComponent(new EmptySpace());
         addComponent(scoreboard);
         addComponent(new EmptySpace());
-        addComponent(getGameBoard());
+        addComponent(gameBoard);
     }
 
-    protected Label getTitleAsLabel() {
-//        return new Label(JEOPARDY).setLayoutData(layoutData);
-        return new Label("JEOPARDY").setLayoutData(layoutData);
+    protected Label getCurrentTitleLabel() {
+        return currentTitleLabel;
     }
 
-    protected Panel getGameBoard() {
-        Panel gameboard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
-
-        //category name
-        for (int i = 0; i < gameBoardWidth; i++) {
-            gameboard.addComponent(new Label("Placeholder").setLayoutData(layoutData));
-        }
-
-        //questions
-        for (int i = 1; i <= gameBoardHeight; i++) {
-            int currentLabel = i * 100;
-            for (int j = 0; j < gameBoardWidth; j++) {
-                gameboard.addComponent(createButton(String.valueOf(currentLabel)));
+    protected void setCurrentTitleLabel(boolean title) {
+        if (title) {
+            currentTitleLabel.setText("JEOPARDY");
+        } else {
+            int index = playerList.indexOf(questionChooserPlayer) + 1;
+            Player player;
+            if (index < playerList.size()) {
+                player = playerList.get(index);
+            } else {
+                player = playerList.getFirst();
             }
-
+            questionChooserPlayer = player;
+            currentTitleLabel.setText(player.getName() + " choose a question:");
         }
-
-        return gameboard;
     }
 
-    protected Button createButton(String label) {
-        Button button = new Button(label);
+    protected Panel createGameBoard() {
+        Panel gameBoard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
+        int width = 1;
 
-        button.addListener(button1 -> {
-            button.setVisible(false);
-            button.setEnabled(false);
-            currentGameButton = button;
-            this.addComponent(new CurrentPlayerSelectorPanel(this));
-        });
+        for (GameCategory gc : this.gameBoardQuestions.getGameCategories()) {
+            gameBoard.addComponent(new Label(gc.name));
+            if (width < numberOfCategories) {
+                gameBoard.addComponent(new EmptySpace());
+            }
+            width++;
+        }
 
-        return button;
+        int label = 100;
+        for (Question.Difficulty difficulty : Question.Difficulty.values()) {
+            width = 1;
+            for (GameCategory gc : this.gameBoardQuestions.getGameCategories()) {
+                gameBoard.addComponent(new GameBoardButton(String.valueOf(label), this, gc.getQuestionByDifficulty(difficulty)));
+                if (width < numberOfCategories) {
+                    gameBoard.addComponent(new EmptySpace());
+                }
+                width++;
+            }
+            label += 100;
+        }
+        return gameBoard;
     }
 
     protected void enableButtons(boolean enable) {
-        for (Component component : getChildrenList()) {
-            if (component instanceof Panel) {
-                for (Component child : ((Panel) component).getChildrenList()) {
-                    if (child instanceof Button) {
-                        if (child.isVisible()) {
-                            ((Button) child).setEnabled(enable);
-                        }
-                    }
-                }
-            }
-        }
+        gameBoard.getChildrenList()
+                .stream()
+                .filter(component -> component instanceof Button)
+                .map(component -> (Button) component)
+                .forEach(button -> button.setEnabled(enable));
     }
 
-    protected void selectCurrentPlayer() {
-//        System.out.println("Select current player");
+    protected boolean gameBoardButtonsAvailable() {
+        return gameBoard.getChildrenList()
+                .stream()
+                .filter(component -> component instanceof Button)
+                .map(component -> (Button) component)
+                .anyMatch(Button::isVisible);
     }
 
-    protected void validatePlayerAnswer() {
-        scoreboard.updatePlayerScore(Integer.parseInt(currentGameButton.getLabel()));
-    //        System.out.println("validatePlayerAnswer");
+    protected void validatePlayerAnswer(boolean isAnswerCorrect) {
+        if (isAnswerCorrect) {
+            currentPlayer.increaseScore(currentQuestionScore);
+            scoreboard.updatePlayerScore(currentPlayer);
+        } else {
+            currentPlayer.increaseScore(-currentQuestionScore);
+            scoreboard.updatePlayerScore(currentPlayer);
+        }
+        System.out.println(gameBoardButtonsAvailable());
     }
 
-    protected Panel getScoreboard() {
-        Panel scoreboard = new Panel(new GridLayout(numberOfPlayers)).setLayoutData(layoutData);
+    protected List<Player> getPlayerList() {
+        return playerList;
+    }
 
-        for (int i = 1; i <= numberOfPlayers; i++) {
-            scoreboard.addComponent(new Label("Player " + String.valueOf(i) + ":"));
-        }
+    protected int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
 
-        for (int i = 0; i < numberOfPlayers; i++) {
-            scoreboard.addComponent(new Label(String.valueOf(i)));
-        }
+    protected void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 
-        return scoreboard;
+    protected Player getCurrentPlayer() {
+        return this.currentPlayer;
+    }
+
+    protected void setCurrentQuestionScore(int score) {
+        this.currentQuestionScore = score;
+    }
+
+    protected Window getWindow() {
+        return window;
     }
 }
