@@ -1,6 +1,7 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import backend.Question.Difficulty;
 
@@ -11,8 +12,10 @@ public class GameBoard {
     public GameBoard() {
         dataHandler = new DataHandler();
         dataHandler.loadQuestions();
-        for(Category c: dataHandler.Categories) {
-            gameCategories.add(new GameCategory(c));
+        Collections.shuffle(dataHandler.Categories);
+        int numberOfCategoriesInGame = 5;
+        for (int i = 0; i < numberOfCategoriesInGame; i++){
+            gameCategories.add(new GameCategory(dataHandler.Categories.get(i)));
         }
     }
     public boolean removeQuestion(int indexCategory, Difficulty difficulty) {
