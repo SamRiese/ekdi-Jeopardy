@@ -33,7 +33,7 @@ public class Game extends Panel {
     private final int numberOfPlayers;
     private final List<Player> playerList;
     private Player currentPlayer;
-    private Label currentPlayerLabel;
+    private final Label currentTitleLabel;
     private int currentQuestionScore;
 
 
@@ -46,25 +46,29 @@ public class Game extends Panel {
         this.scoreboard = new Scoreboard(this);
         this.gameBoardQuestions = new GameBoard();
         this.gameBoard = createGameBoard();
+        this.currentTitleLabel = new Label(currentPlayer.getName() + " choose a question:").setLayoutData(layoutData);
 
         setTheme(Theme.getTheme());
 
         addComponent(new GameBoardMenuBarPanel(this));
         addComponent(new EmptySpace());
-        addComponent(getTitleAsLabel());
+        addComponent(getCurrentTitleLabel());
         addComponent(new EmptySpace());
         addComponent(scoreboard);
         addComponent(new EmptySpace());
         addComponent(gameBoard);
     }
 
-    protected Label getTitleAsLabel() {
-//        return new Label(JEOPARDY).setLayoutData(layoutData);
-        return new Label("JEOPARDY").setLayoutData(layoutData);
+    protected Label getCurrentTitleLabel() {
+        return currentTitleLabel;
     }
 
-    protected Label setCurrentPlayerLabel() {
-        return
+    protected void setCurrentTitleLabel(boolean title) {
+        if (title) {
+            currentTitleLabel.setText("JEOPARDY");
+        } else {
+            currentTitleLabel.setText(currentPlayer.getName() + " choose a question:");
+        }
     }
 
     protected Panel createGameBoard() {

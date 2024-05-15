@@ -20,6 +20,7 @@ public class GameBoardButton extends Button {
             button.setEnabled(false);
             game.enableButtons(false);
             game.setCurrentQuestionScore(Integer.parseInt(label));
+            game.setCurrentTitleLabel(true);
             game.addComponent(new ShowQuestionDialogPanel(game, question));
         });
     }

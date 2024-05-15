@@ -35,6 +35,7 @@ public class AnswerDialogPanel extends Panel {
                 game.removeComponent(this);
                 game.enableButtons(true);
                 game.validatePlayerAnswer(answerOption.equals(question.answer));
+                game.setCurrentTitleLabel(false);
             });
             index++;
         }
