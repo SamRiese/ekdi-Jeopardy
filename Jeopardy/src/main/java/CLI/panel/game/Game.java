@@ -20,19 +20,18 @@ public class Game extends Panel {
                     "  \\____/ \\___|\\___/| .__/ \\__,_|_|  \\__,_|\\__, |\n" +
                     "                   | |                     __/ |\n" +
                     "                   |_|                    |___/";
-    private static final int gameBoardHeight = 4;
-    private static final int gameBoardWidth = 5;
-    private static final int gameBoardSize = gameBoardHeight * gameBoardWidth;
+    private static final int numberOfCategories = 5;
+    private static final int gameBoardWidth = (numberOfCategories + (numberOfCategories - 1));
 
     private final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     private final GameBoard gameBoardQuestions;
     private final Panel gameBoard;
     private final Window window;
     private final Scoreboard scoreboard;
-    int availableQuestions = gameBoardSize;
     private final int numberOfPlayers;
     private final List<Player> playerList;
     private Player currentPlayer;
+    private Player questionChooserPlayer;
     private final Label currentTitleLabel;
     private int currentQuestionScore;
 
@@ -47,6 +46,7 @@ public class Game extends Panel {
         this.gameBoardQuestions = new GameBoard();
         this.gameBoard = createGameBoard();
         this.currentTitleLabel = new Label(currentPlayer.getName() + " choose a question:").setLayoutData(layoutData);
+        this.questionChooserPlayer = playerList.getFirst();
 
         setTheme(Theme.getTheme());
 
@@ -67,30 +67,59 @@ public class Game extends Panel {
         if (title) {
             currentTitleLabel.setText("JEOPARDY");
         } else {
-            currentTitleLabel.setText(currentPlayer.getName() + " choose a question:");
+            int index = playerList.indexOf(questionChooserPlayer) + 1;
+            Player player;
+            if (index < playerList.size()) {
+                player = playerList.get(index);
+            } else {
+                player = playerList.getFirst();
+            }
+            questionChooserPlayer = player;
+            currentTitleLabel.setText(player.getName() + " choose a question:");
         }
     }
 
     protected Panel createGameBoard() {
         Panel gameBoard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
+        int width = 1;
+
+        for (GameCategory gc : this.gameBoardQuestions.getGameCategories()) {
+            gameBoard.addComponent(new Label(gc.name));
+            if (width < numberOfCategories) {
+                gameBoard.addComponent(new EmptySpace());
+            }
+            width++;
+        }
 
         int label = 100;
         for (Question.Difficulty difficulty : Question.Difficulty.values()) {
+            width = 1;
             for (GameCategory gc : this.gameBoardQuestions.getGameCategories()) {
                 gameBoard.addComponent(new GameBoardButton(String.valueOf(label), this, gc.getQuestionByDifficulty(difficulty)));
+                if (width < numberOfCategories) {
+                    gameBoard.addComponent(new EmptySpace());
+                }
+                width++;
             }
             label += 100;
         }
-
         return gameBoard;
     }
 
     protected void enableButtons(boolean enable) {
-        for (Component component : gameBoard.getChildrenList()) {
-            if (component instanceof Button) {
-                ((Button) component).setEnabled(enable);
-            }
-        }
+        gameBoard.getChildrenList()
+                .stream()
+                .filter(component -> component instanceof Button)
+                .map(component -> (Button) component)
+                .forEach(button -> button.setEnabled(enable));
+    }
+
+    protected boolean gameBoardButtonsAvailable() {
+        return gameBoard.getChildrenList()
+                .stream()
+                .filter(component -> component instanceof Button)
+                .map(component -> (Button) component)
+                .anyMatch(Button::isVisible);
     }
 
     protected void validatePlayerAnswer(boolean isAnswerCorrect) {
@@ -101,19 +130,7 @@ public class Game extends Panel {
             currentPlayer.increaseScore(-currentQuestionScore);
             scoreboard.updatePlayerScore(currentPlayer);
         }
-    }
-
-    protected Panel getScoreboard() {
-        Panel scoreboard = new Panel(new GridLayout(numberOfPlayers)).setLayoutData(layoutData);
-
-        for (int i = 1; i <= numberOfPlayers; i++) {
-            scoreboard.addComponent(new Label("Player " + String.valueOf(i) + ":"));
-        }
-
-        for (int i = 0; i < numberOfPlayers; i++) {
-            scoreboard.addComponent(new Label(String.valueOf(i)));
-        }
-        return scoreboard;
+        System.out.println(gameBoardButtonsAvailable());
     }
 
     protected List<Player> getPlayerList() {

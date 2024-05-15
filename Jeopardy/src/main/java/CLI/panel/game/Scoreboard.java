@@ -38,7 +38,6 @@ public class Scoreboard extends Panel {
     protected void updatePlayerScore(Player player) {
         for (int i = 0; i < game.getPlayerList().size(); i++) {
             if (game.getPlayerList().get(i) == player) {
-                System.out.println(player.getScore());
                 playerScoreLabelList.get(i).setText(String.valueOf(player.getScore()));
             }
         }

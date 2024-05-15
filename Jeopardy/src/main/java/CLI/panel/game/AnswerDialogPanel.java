@@ -32,6 +32,8 @@ public class AnswerDialogPanel extends Panel {
         int index = 0;
         for (String answerOption : question.options) {
             answerActionListBox.addItem(abcd[index] + answerOption, () -> {
+                answerActionListBox.setEnabled(false);
+                answerActionListBox.setVisible(false);
                 game.removeComponent(this);
                 game.enableButtons(true);
                 game.validatePlayerAnswer(answerOption.equals(question.answer));
