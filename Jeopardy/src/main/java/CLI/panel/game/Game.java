@@ -130,7 +130,7 @@ public class Game extends Panel {
             currentPlayer.increaseScore(-currentQuestionScore);
             scoreboard.updatePlayerScore(currentPlayer);
         }
-        System.out.println(gameBoardButtonsAvailable());
+//        System.out.println(gameBoardButtonsAvailable());
     }
 
     protected List<Player> getPlayerList() {

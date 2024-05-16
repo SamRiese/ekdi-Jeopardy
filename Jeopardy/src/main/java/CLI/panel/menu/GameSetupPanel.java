@@ -30,8 +30,6 @@ public class GameSetupPanel extends MainMenuPanel {
             int numberOfPlayers = i;
             actionListBox.addItem(String.valueOf(i), () -> window.setComponent(new GamePlayerCreationPanel(window, numberOfPlayers)));
         }
-//        new Game(window, numberOfPlayers)
-
         return actionListBox;
     }
 }
