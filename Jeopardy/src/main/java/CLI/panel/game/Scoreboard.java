@@ -25,7 +25,7 @@ public class Scoreboard extends Panel {
 
     private void createScoreboardComponents() {
         for (Player player : game.getPlayerList()) {
-            addComponent(new Label(player.getName()));
+            addComponent(new Label(player.getName() + ":"));
         }
 
         for (Player player : game.getPlayerList()) {
