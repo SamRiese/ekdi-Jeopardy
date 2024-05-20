@@ -64,4 +64,8 @@ public class ScoreHandler {
         }
         return csvString;
     }
+
+    public List<Score> getScores() {
+        return scores;
+    }
 }
