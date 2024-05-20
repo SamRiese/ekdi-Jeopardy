@@ -36,7 +36,7 @@ public class MainMenuPanel extends Panel {
         ActionListBox actionListBox = new ActionListBox().setLayoutData(layoutData);
 
         actionListBox.addItem("Game Menu", () -> window.setComponent(new GameMenuPanel(window)));
-        actionListBox.addItem("Option Menu", () -> window.setComponent(new OptionMenuPanel(window)));
+        actionListBox.addItem("High Scores", () -> window.setComponent(new HighScoresPanel(window)));
         actionListBox.addItem("Exit", () -> window.close());
 
         return actionListBox;
