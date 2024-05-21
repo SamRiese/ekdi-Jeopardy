@@ -26,6 +26,7 @@ public class ScoreHandler {
             while ((line = reader.readLine()) != null) {
                 String[] nameScoreValues = line.split(",|\n");
                 scores.add(new Score(nameScoreValues[0], nameScoreValues[1]));
+                sortScores();
             }
         } catch (IOException e) {
             e.printStackTrace();
