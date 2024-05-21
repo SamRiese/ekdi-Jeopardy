@@ -2,6 +2,7 @@ package backend;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import backend.Question.Difficulty;
 
@@ -18,6 +19,10 @@ public class GameCategory {
         medium = Question.selectRandomQuestion(category.medium);
         hard = Question.selectRandomQuestion(category.hard);
         expert = Question.selectRandomQuestion(category.expert);
+        Collections.shuffle(easy.options);
+        Collections.shuffle(medium.options);
+        Collections.shuffle(hard.options);
+        Collections.shuffle(expert.options);
     }
     public boolean removeQuestion(Difficulty difficulty) {
         switch (difficulty) {

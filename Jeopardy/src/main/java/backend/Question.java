@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Question {
     public String question;
-    public String[] options;
+    public List<String> options;
     public String answer;
     
     public static Question selectRandomQuestion(List<Question> questions) {
