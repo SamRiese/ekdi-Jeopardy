@@ -5,11 +5,23 @@ import backend.Player;
 import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
+/**
+ * ShowQuestionDialogPanel is a panel that displays the selected question and offers the option of choosing the player
+ * who activated the buzzer first.
+ * If there is only one player, it directly moves to the answer dialog.
+ */
 public class ShowQuestionDialogPanel extends Panel {
     static final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     Game game;
     Question question;
 
+    /**
+     * Constructs a ShowQuestionDialogPanel with the specified game and question.
+     * Sets up the layout, theme, and initializes the components for displaying the question and selecting the player.
+     *
+     * @param game     the current game instance
+     * @param question the question to be displayed
+     */
     protected ShowQuestionDialogPanel(Game game, Question question) {
         super(new LinearLayout(Direction.VERTICAL));
         this.game = game;
@@ -33,6 +45,12 @@ public class ShowQuestionDialogPanel extends Panel {
         }
     }
 
+    /**
+     * Creates an ActionListBox to display the answer options for the question.
+     * The options are displayed but not enabled for selection in this panel.
+     *
+     * @return the ActionListBox with answer options
+     */
     private ActionListBox answerActionListBox() {
         String[] abcd = {"A) ", "B) ", "C) ", "D) "};
         ActionListBox answerActionListBox = new ActionListBox();
@@ -48,6 +66,12 @@ public class ShowQuestionDialogPanel extends Panel {
         return answerActionListBox;
     }
 
+    /**
+     * Creates a panel with buttons for each player to select who will answer the question.
+     * When a player is selected, it moves to the answer dialog for that player.
+     *
+     * @return the panel with player selection buttons
+     */
     private Panel choosePlayer() {
         Panel choosePlayerPanel = new Panel(new LinearLayout(Direction.HORIZONTAL)).setLayoutData(layoutData);
 

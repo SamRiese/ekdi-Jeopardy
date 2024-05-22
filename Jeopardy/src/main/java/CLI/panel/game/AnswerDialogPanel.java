@@ -4,11 +4,22 @@ import CLI.Theme;
 import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
+/**
+ * AnswerDialogPanel is a panel that displays a question and its possible answers.
+ * Players can select an answer, and the game will validate the response.
+ */
 public class AnswerDialogPanel extends Panel {
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     final Game game;
     final Question question;
 
+    /**
+     * Constructs an AnswerDialogPanel with the specified game and question.
+     * Sets up the layout, theme, and components to display the question and answers.
+     *
+     * @param game the current game instance
+     * @param question the question to be displayed
+     */
     protected AnswerDialogPanel(Game game, Question question) {
         super(new LinearLayout(Direction.VERTICAL));
         this.game = game;
@@ -24,6 +35,12 @@ public class AnswerDialogPanel extends Panel {
         addComponent(answerDialogPanel());
     }
 
+    /**
+     * Creates an ActionListBox containing the answer options.
+     * When an option is selected, it validates the answer and updates the game state.
+     *
+     * @return an ActionListBox with answer options
+     */
     protected ActionListBox answerDialogPanel() {
         String[] abcd = {"A) ", "B) ", "C) ", "D) "};
         ActionListBox answerActionListBox = new ActionListBox();
