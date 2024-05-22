@@ -7,6 +7,8 @@ import backend.Score;
 import backend.ScoreHandler;
 import com.googlecode.lanterna.gui2.*;
 
+import java.util.List;
+
 public class HighScoresPanel extends Panel {
 
     private static final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
@@ -31,9 +33,12 @@ public class HighScoresPanel extends Panel {
         ScoreHandler scoreHandler = new ScoreHandler();
         scoreHandler.loadScores();
 
+
         for (Score score : scoreHandler.getScores()) {
-            panel.addComponent(new Label(counter + ") " + score.name + ": " + score.score).setLayoutData(layoutData));
-            counter++;
+            if ( counter <= 10) {
+                panel.addComponent(new Label(counter + ") " + score.name + ": " + score.score).setLayoutData(layoutData));
+                counter++;
+            }
         }
         return panel;
     }
