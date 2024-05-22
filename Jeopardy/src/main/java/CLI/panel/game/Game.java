@@ -10,6 +10,10 @@ import com.googlecode.lanterna.gui2.*;
 
 import java.util.List;
 
+/**
+ * This class is a panel representing the game for the CLI application.
+ * It displays the game board, allows players to choose questions, and handles game logic.
+ */
 public class Game extends Panel {
     private static final String JEOPARDY =
             "       _                                _       \n" +
@@ -35,7 +39,13 @@ public class Game extends Panel {
     private final Label currentTitleLabel;
     private int currentQuestionScore;
 
-
+    /**
+     * Constructs a Game panel with the specified window and list of players.
+     * Sets up the game board, scoreboard, and other components.
+     *
+     * @param window the main application window
+     * @param players the list of players participating in the game
+     */
     public Game(Window window, List<Player> players) {
         super(new LinearLayout(Direction.VERTICAL));
         this.window = window;
@@ -59,10 +69,21 @@ public class Game extends Panel {
         addComponent(gameBoard);
     }
 
+    /**
+     * Gets the current title label.
+     *
+     * @return the current title label
+     */
     protected Label getCurrentTitleLabel() {
         return currentTitleLabel;
     }
 
+
+    /**
+     * Sets the current title label text.
+     *
+     * @param title if true, sets the label to "JEOPARDY"; otherwise, prompts the next player to choose a question
+     */
     protected void setCurrentTitleLabel(boolean title) {
         if (title) {
             currentTitleLabel.setText("JEOPARDY");
@@ -79,6 +100,12 @@ public class Game extends Panel {
         }
     }
 
+
+    /**
+     * Creates the game board panel with categories and questions.
+     *
+     * @return the game board panel
+     */
     protected Panel createGameBoard() {
         Panel gameBoard = new Panel(new GridLayout(gameBoardWidth)).setLayoutData(layoutData);
         int width = 1;
@@ -106,6 +133,11 @@ public class Game extends Panel {
         return gameBoard;
     }
 
+    /**
+     * Enables or disables the buttons on the game board.
+     *
+     * @param enable if true, enables the buttons; otherwise, disables them
+     */
     protected void enableButtons(boolean enable) {
         gameBoard.getChildrenList()
                 .stream()
@@ -114,6 +146,11 @@ public class Game extends Panel {
                 .forEach(button -> button.setEnabled(enable));
     }
 
+    /**
+     * Checks if any game board buttons are available (visible).
+     *
+     * @return true if there are available buttons; otherwise, false
+     */
     protected boolean gameBoardButtonsAvailable() {
         return gameBoard.getChildrenList()
                 .stream()
@@ -122,6 +159,13 @@ public class Game extends Panel {
                 .anyMatch(Button::isVisible);
     }
 
+    /**
+     * Validates the player's answer and updates the score accordingly.
+     * If the answer is correct, increases the player's score; otherwise, decreases it.
+     * If no more questions are available, transitions to the high score panel.
+     *
+     * @param isAnswerCorrect if true, the answer is correct; otherwise, it is incorrect
+     */
     protected void validatePlayerAnswer(boolean isAnswerCorrect) {
         if (isAnswerCorrect) {
             currentPlayer.increaseScore(currentQuestionScore);
@@ -136,26 +180,56 @@ public class Game extends Panel {
         }
     }
 
+    /**
+     * Gets the list of players.
+     *
+     * @return the list of players
+     */
     protected List<Player> getPlayerList() {
         return playerList;
     }
 
+    /**
+     * Gets the number of players.
+     *
+     * @return the number of players
+     */
     protected int getNumberOfPlayers() {
         return numberOfPlayers;
     }
 
+    /**
+     * Sets the current player.
+     *
+     * @param currentPlayer the current player
+     */
     protected void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 
+    /**
+     * Gets the current player.
+     *
+     * @return the current player
+     */
     protected Player getCurrentPlayer() {
         return this.currentPlayer;
     }
 
+    /**
+     * Sets the current question score.
+     *
+     * @param score the current question score
+     */
     protected void setCurrentQuestionScore(int score) {
         this.currentQuestionScore = score;
     }
 
+    /**
+     * Gets the main application window.
+     *
+     * @return the main application window
+     */
     protected Window getWindow() {
         return window;
     }

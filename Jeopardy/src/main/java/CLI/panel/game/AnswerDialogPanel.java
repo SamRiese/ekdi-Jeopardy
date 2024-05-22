@@ -5,7 +5,8 @@ import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
 /**
- * The AnswerDialogPanel class provides a panel to display a question and its possible answers.
+ * AnswerDialogPanel is a panel that displays a question and its possible answers.
+ * Players can select an answer, and the game will validate the response.
  */
 public class AnswerDialogPanel extends Panel {
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
@@ -13,10 +14,11 @@ public class AnswerDialogPanel extends Panel {
     final Question question;
 
     /**
-     * Constructs an AnswerDialogPanel.
+     * Constructs an AnswerDialogPanel with the specified game and question.
+     * Sets up the layout, theme, and components to display the question and answers.
      *
-     * @param game     the Game instance
-     * @param question the current question
+     * @param game the current game instance
+     * @param question the question to be displayed
      */
     protected AnswerDialogPanel(Game game, Question question) {
         super(new LinearLayout(Direction.VERTICAL));
@@ -34,9 +36,10 @@ public class AnswerDialogPanel extends Panel {
     }
 
     /**
-     * Creates and returns an ActionListBox with answer options A), B), C), D).
+     * Creates an ActionListBox containing the answer options.
+     * When an option is selected, it validates the answer and updates the game state.
      *
-     * @return the ActionListBox with answer options
+     * @return an ActionListBox with answer options
      */
     protected ActionListBox answerDialogPanel() {
         String[] abcd = {"A) ", "B) ", "C) ", "D) "};
@@ -50,6 +53,7 @@ public class AnswerDialogPanel extends Panel {
                 answerActionListBox.setVisible(false);
                 game.addComponent(new CorrectAnswerPanel(game, question));
                 game.removeComponent(this);
+                game.enableButtons(true);
                 game.validatePlayerAnswer(answerOption.equals(question.answer));
                 game.setCurrentTitleLabel(false);
             });

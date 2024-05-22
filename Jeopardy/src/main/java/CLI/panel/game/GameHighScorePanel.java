@@ -9,12 +9,23 @@ import com.googlecode.lanterna.gui2.*;
 
 import java.util.List;
 
+/**
+ * GameHighScorePanel is a panel that displays the high scores at the end of the game.
+ * It provides options to save the scores and return to the main menu.
+ */
 public class GameHighScorePanel extends Panel {
 
     private static final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     private final Window window;
     private final List<Player> playerList;
 
+    /**
+     * Constructs a GameHighScorePanel with the specified window and player list.
+     * Sets up the layout, theme, and components to display scores and menu options.
+     *
+     * @param window the application window
+     * @param playerList the list of players and their scores
+     */
     protected GameHighScorePanel(Window window, List<Player> playerList) {
         super(new LinearLayout(Direction.VERTICAL));
         this.window = window;
@@ -29,6 +40,12 @@ public class GameHighScorePanel extends Panel {
         addComponent(menuPanel());
     }
 
+
+    /**
+     * Creates a panel that displays the ranking list of players.
+     *
+     * @return a panel with the player scores
+     */
     private Panel createScoreBoard() {
         Panel panel = new Panel(new GridLayout(1)).setLayoutData(layoutData);
         int counter = 1;
@@ -42,6 +59,11 @@ public class GameHighScorePanel extends Panel {
         return panel;
     }
 
+    /**
+     * Creates a panel with buttons for saving scores and exiting to the main menu.
+     *
+     * @return a panel with menu buttons
+     */
     private Panel menuPanel() {
         Panel panel = new Panel(new GridLayout(3)).setLayoutData(layoutData);
 
@@ -58,6 +80,9 @@ public class GameHighScorePanel extends Panel {
         return panel;
     }
 
+    /**
+     * Saves the scores of all players using the ScoreHandler.
+     */
     private void saveScores() {
         ScoreHandler scoreHandler = new ScoreHandler();
         scoreHandler.loadScores();

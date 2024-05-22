@@ -10,12 +10,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+/**
+ * GamePlayerCreationPanel is a panel for creating player profiles for the game.
+ * It collects player names and initializes the game with the specified number of players.
+ */
 public class GamePlayerCreationPanel extends Panel {
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     final Window window;
     final int numberOfPlayers;
     List<Player> players;
+
+    /**
+     * Constructs a GamePlayerCreationPanel with the specified window and number of players.
+     * Sets up the theme and initiates the player creation interface.
+     *
+     * @param window the main application window
+     * @param numberOfPlayers the number of players to be created
+     */
     protected GamePlayerCreationPanel(Window window, int numberOfPlayers) {
         super(new LinearLayout(Direction.VERTICAL));
         this.window = window;
@@ -26,6 +37,13 @@ public class GamePlayerCreationPanel extends Panel {
         getPlayerCreationInterface(numberOfPlayers);
     }
 
+    /**
+     * Sets up the player creation interface for collecting player names.
+     * Recursively collects names until the specified number of players is reached.
+     *
+     * @param numberOfPlayers the number of players remaining to be created
+     * @param currentPlayer the current player's index, defaults to 1 if not provided
+     */
     protected void getPlayerCreationInterface(int numberOfPlayers, int... currentPlayer) {
         if (numberOfPlayers != 0) {
             int player = currentPlayer.length == 0 ? 1 : currentPlayer[0];
@@ -65,6 +83,12 @@ public class GamePlayerCreationPanel extends Panel {
         }
     }
 
+    /**
+     * Creates an array of EmptySpace components for layout purposes.
+     *
+     * @param size the number of EmptySpace components to create
+     * @return an array of EmptySpace components
+     */
     private EmptySpace[] createEmptySpaces(final int size) {
         EmptySpace[] emptySpaces = new EmptySpace[size];
 
@@ -74,6 +98,11 @@ public class GamePlayerCreationPanel extends Panel {
         return emptySpaces;
     }
 
+    /**
+     * Removes an array of EmptySpace components from the panel.
+     *
+     * @param emptySpaces the array of EmptySpace components to remove
+     */
     private void removeEmptySpaces(EmptySpace[] emptySpaces) {
         Arrays.stream(emptySpaces).forEach(this::removeComponent);
     }
