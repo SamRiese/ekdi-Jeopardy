@@ -11,8 +11,6 @@ import com.googlecode.lanterna.gui2.*;
  * HighScoresPanel is a panel that displays the high scores of the game.
  * It shows a list of high scores and provides an option to exit back to the main menu.
  */
-import java.util.List;
-
 public class HighScoresPanel extends Panel {
 
     private static final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
