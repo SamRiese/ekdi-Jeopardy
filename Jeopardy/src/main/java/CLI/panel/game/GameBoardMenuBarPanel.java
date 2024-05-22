@@ -17,7 +17,7 @@ public class GameBoardMenuBarPanel extends Panel {
 
         addComponent(new Button("Exit", () -> game.getWindow().setComponent(new MainMenuPanel(game.getWindow()))));
         addComponent(new EmptySpace());
-        addComponent(new Button("Save Scores", () -> game.getWindow().setComponent(
+        addComponent(new Button("Save Scores and Exit", () -> game.getWindow().setComponent(
                 new GameHighScorePanel(game.getWindow(), game.getPlayerList()))));
     }
 }
