@@ -4,20 +4,26 @@ import CLI.Theme;
 import backend.Question;
 import com.googlecode.lanterna.gui2.*;
 
+/**
+ * The CorrectAnswerPanel class represents a panel displayed after a player answered a question.
+ * It conatins the correct answer and a continue button to proceed in the game.
+ */
 public class CorrectAnswerPanel extends Panel {
     final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
     final Game game;
     final Question question;
-    String answerOption;
-    AnswerDialogPanel answerDialogPanel;
     Button continueButton;
 
-    protected CorrectAnswerPanel(Game game, Question question, AnswerDialogPanel answerDialogPanel, String answerOption) {
+    /**
+     * Constructs a CorrectAnswerPanel.
+     *
+     * @param game                the Game instance
+     * @param question            the last question asked / current question
+     */
+    protected CorrectAnswerPanel(Game game, Question question) {
         super(new LinearLayout(Direction.VERTICAL));
         this.game = game;
         this.question = question;
-        this.answerDialogPanel = answerDialogPanel;
-        this.answerOption = answerOption;
 
         setLayoutData(layoutData);
         setTheme(Theme.getTheme());
@@ -32,13 +38,12 @@ public class CorrectAnswerPanel extends Panel {
         addComponent(continueButton);
         addComponent(new EmptySpace());
     }
-
+    
+    /**
+     * Actions executed when the continue button is pressed.
+     */
     protected void handleContinue(){
-        //game.removeComponent(answerDialogPanel);
-        
         game.enableButtons(true);
-        //game.validatePlayerAnswer(answerOption.equals(question.answer));
-        //game.setCurrentTitleLabel(false);
         game.removeComponent(this);
         continueButton.setEnabled(false);
         continueButton.setVisible(false);
