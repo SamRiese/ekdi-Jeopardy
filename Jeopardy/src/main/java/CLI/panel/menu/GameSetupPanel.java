@@ -26,7 +26,7 @@ public class GameSetupPanel extends MainMenuPanel {
     protected ActionListBox getActionListBox() {
         ActionListBox actionListBox = new ActionListBox().setLayoutData(layoutData);
 
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i <= 6; i++) {
             int numberOfPlayers = i;
             actionListBox.addItem(String.valueOf(i), () -> window.setComponent(new GamePlayerCreationPanel(window, numberOfPlayers)));
         }

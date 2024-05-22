@@ -17,6 +17,7 @@ public class GameBoard {
     /**
      * Constructs a new GameBoard.
      * Loads questions using DataHandler, shuffles the categories, and initializes the game categories.
+     * Categories and possible Answers are randomized.
      */
     public GameBoard() {
         dataHandler = new DataHandler();
