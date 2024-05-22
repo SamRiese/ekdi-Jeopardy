@@ -8,12 +8,12 @@ import com.googlecode.lanterna.gui2.EmptySpace;
 import com.googlecode.lanterna.gui2.Label;
 
 
-public class GameSetupPanel extends MainMenuPanel {
+public class GameSetupPanel extends BaseMenuPanel {
     public GameSetupPanel(Window window) {
         super(window);
         addComponent(new EmptySpace());
         addComponent(
-                new Button("Exit", () -> window.setComponent(new GameMenuPanel(window))).setLayoutData(layoutData)
+                new Button("Exit", () -> window.setComponent(new MainMenuPanel(window))).setLayoutData(layoutData)
         );
     }
 
