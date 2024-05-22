@@ -31,6 +31,7 @@ public class CorrectAnswerPanel extends Panel {
         addComponent(new EmptySpace());
         addComponent(new EmptySpace());
         addComponent(new Label(question.question));
+        addComponent(new EmptySpace());
         addComponent(new Label("The correct Answer is: " + question.answer).setLayoutData(layoutData));
         addComponent(new EmptySpace());
         continueButton = new Button("Continue", () -> handleContinue());
