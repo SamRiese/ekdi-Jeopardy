@@ -1,11 +1,12 @@
 CLI/panel/menu/MainMenuPanel.class
 backend/Question$Difficulty.class
 backend/DataHandler$1.class
-CLI/panel/menu/OptionMenuPanel.class
 backend/Score.class
+CLI/panel/game/GameHighScorePanel.class
 Main.class
 backend/GameBoard.class
 backend/DataHandler.class
+CLI/panel/menu/BaseMenuPanel.class
 backend/Question.class
 backend/ScoreHandler.class
 CLI/Theme.class
@@ -15,7 +16,6 @@ CLI/panel/menu/GameSetupPanel.class
 CLI/panel/menu/GamePlayerCreationPanel.class
 CLI/Window.class
 CLI/panel/game/Game.class
-CLI/panel/menu/GameMenuPanel.class
 CLI/panel/game/Scoreboard.class
 CLI/panel/game/ShowQuestionDialogPanel.class
 CLI/panel/game/GameBoardButton.class
@@ -23,3 +23,4 @@ CLI/panel/game/AnswerDialogPanel.class
 backend/GameCategory$1.class
 backend/Player.class
 backend/GameCategory.class
+CLI/panel/menu/HighScoresPanel.class
