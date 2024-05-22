@@ -127,7 +127,7 @@ public class Game extends Panel {
             currentPlayer.increaseScore(currentQuestionScore);
             scoreboard.updatePlayerScore(currentPlayer);
         } else {
-            currentPlayer.increaseScore(-currentQuestionScore);
+            currentPlayer.increaseScore(-currentQuestionScore/2);
             scoreboard.updatePlayerScore(currentPlayer);
         }
 
