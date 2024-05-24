@@ -53,7 +53,6 @@ public class AnswerDialogPanel extends Panel {
                 answerActionListBox.setVisible(false);
                 game.addComponent(new CorrectAnswerPanel(game, question));
                 game.removeComponent(this);
-                game.enableButtons(true);
                 game.validatePlayerAnswer(answerOption.equals(question.answer));
                 game.setCurrentTitleLabel(false);
             });

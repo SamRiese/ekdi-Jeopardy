@@ -3,6 +3,7 @@ backend/Question$Difficulty.class
 backend/DataHandler$1.class
 backend/Score.class
 CLI/panel/game/GameHighScorePanel.class
+CLI/panel/game/CorrectAnswerPanel.class
 Main.class
 backend/GameBoard.class
 backend/DataHandler.class
