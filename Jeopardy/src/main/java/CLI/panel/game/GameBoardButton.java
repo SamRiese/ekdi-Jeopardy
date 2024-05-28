@@ -28,6 +28,7 @@ public class GameBoardButton extends Button {
         setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center));
 
         addListener(button -> {
+            game.decrementRoundsLeft();
             button.setVisible(false);
             button.setEnabled(false);
             game.enableButtons(false);

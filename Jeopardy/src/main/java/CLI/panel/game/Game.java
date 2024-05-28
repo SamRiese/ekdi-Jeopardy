@@ -25,6 +25,7 @@ public class Game extends Panel {
                     "                   | |                     __/ |\n" +
                     "                   |_|                    |___/";
     private static final int numberOfCategories = 5;
+    private int roundsLeft = 20;
     private static final int gameBoardWidth = (numberOfCategories + (numberOfCategories - 1));
 
     private final LayoutData layoutData = LinearLayout.createLayoutData(LinearLayout.Alignment.Center);
@@ -38,6 +39,7 @@ public class Game extends Panel {
     private Player questionChooserPlayer;
     private final Label currentTitleLabel;
     private int currentQuestionScore;
+    Label roundsLeftLabel;
 
     /**
      * Constructs a Game panel with the specified window and list of players.
@@ -55,16 +57,21 @@ public class Game extends Panel {
         this.scoreboard = new Scoreboard(this);
         this.gameBoardQuestions = new GameBoard();
         this.gameBoard = createGameBoard();
+
+
         this.currentTitleLabel = new Label(currentPlayer.getName() + " choose a question:").setLayoutData(layoutData);
+        this.roundsLeftLabel = (new Label("Rounds left:"+roundsLeft).setLayoutData(layoutData));
+
         this.questionChooserPlayer = playerList.getFirst();
 
         setTheme(Theme.getTheme());
-
         addComponent(new GameBoardMenuBarPanel(this));
         addComponent(new EmptySpace());
         addComponent(getCurrentTitleLabel());
         addComponent(new EmptySpace());
         addComponent(scoreboard);
+        addComponent(new EmptySpace());
+        addComponent(roundsLeftLabel);
         addComponent(new EmptySpace());
         addComponent(gameBoard);
     }
@@ -167,11 +174,15 @@ public class Game extends Panel {
      * @param isAnswerCorrect if true, the answer is correct; otherwise, it is incorrect
      */
     protected void validatePlayerAnswer(boolean isAnswerCorrect) {
+        int factor = 1;
+        if (roundsLeft <= 4) {
+            factor = 2;
+        }
         if (isAnswerCorrect) {
-            currentPlayer.increaseScore(currentQuestionScore);
+            currentPlayer.increaseScore(currentQuestionScore * factor);
             scoreboard.updatePlayerScore(currentPlayer);
         } else {
-            currentPlayer.increaseScore(-currentQuestionScore/2);
+            currentPlayer.increaseScore((-currentQuestionScore/2) * factor);
             scoreboard.updatePlayerScore(currentPlayer);
         }
 
@@ -232,5 +243,13 @@ public class Game extends Panel {
      */
     protected Window getWindow() {
         return window;
+    }
+
+    /**
+     * Decrements rounds left.
+     */
+    public void decrementRoundsLeft() {
+        roundsLeft--;
+        roundsLeftLabel.setText("Rounds left: " + roundsLeft);
     }
 }
